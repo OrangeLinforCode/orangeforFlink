@@ -13,7 +13,7 @@ object testBatch {
     val env: ExecutionEnvironment = ExecutionEnvironment.getExecutionEnvironment
 
 
-    val lineDs: DataSet[String] = env.readTextFile("E:\\gitREP\\orangeforFlink\\studyForFlink\\src\\main\\resources\\word.txt")
+    val lineDs: DataSet[String] = env.readTextFile("/Users/orangelin/Desktop/workstation/gitREP/orangeforFlink/studyForFlink/src/main/resources/word.txt")
     import org.apache.flink.api.scala._
 
 

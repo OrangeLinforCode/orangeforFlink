@@ -13,15 +13,21 @@ import java.util.Properties;
  * @creat 2021-03-31-21:53
  */
 public class testKafka {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Properties properties = new Properties();
-        properties.setProperty("bootstrap.servers", "node102:9092,node103:9092");
+        properties.setProperty("bootstrap.servers", "192.168.1.101:9092");
         properties.setProperty("group.id", "testKafka");
         properties.setProperty("auto.offset.reset", "latest");
 
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        DataStreamSource<Object> kafkaSource = env.addSource(new FlinkKafkaConsumer<String>("sensor", new SimpleStringSchema(),properties));
+        DataStreamSource<String> kafkaSource = env.addSource(
+                new FlinkKafkaConsumer<>("sun", new SimpleStringSchema(), properties));
+
+        kafkaSource.print("message:");
+
+        env.execute();
+
     }
 }
